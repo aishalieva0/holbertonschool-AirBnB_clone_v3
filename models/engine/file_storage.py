@@ -46,6 +46,15 @@ class FileStorage:
         key = cls.__name__ + "." + id
         return self.__objects.get(key, None)
 
+    def get(self, cls, id):
+        """retrieve one object"""
+        if cls:
+            return sum(
+                1 for key in self.__objects.keys() if key.startswith(cls.__name__)
+            )
+        else:
+            return len(self.__objects)
+
     def new(self, obj):
         """sets in __objects the obj with key <obj class name>.id"""
         if obj is not None:
