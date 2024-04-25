@@ -65,6 +65,21 @@ class DBStorage:
             return result
         return None
 
+    def count(self, cls=None):
+        """count the number of objects in storage"""
+        if cls:
+            if isinstance(cls, str):
+                cls = classes.get(cls, None)
+            if cls:
+                return self.__session.query(cls).count()
+            else:
+                return 0
+        else:
+            total = 0
+            for clss in classes.values():
+                total += self.__session.query(clss).count()
+            return total
+
     def new(self, obj):
         """add the object to the current database session"""
         self.__session.add(obj)
