@@ -11,12 +11,12 @@ from models.amenity import Amenity
 from flask import jsonify
 
 
-@app_views.route("/status")
+@app_views.route("/status", strict_slashes=False)
 def get_status():
     return {"status": "OK"}
 
 
-@app_views.route("/api/v1/stats")
+@app_views.route("/stats", strict_slashes=False)
 def get_count():
     """retrieves the number of each objects by type"""
     states = storage.count(State)
