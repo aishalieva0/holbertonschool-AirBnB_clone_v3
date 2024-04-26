@@ -32,7 +32,7 @@ def get_count():
         "reviews": reviews,
         "places": places,
         "users": users,
-        "amenities": amenities,
+        "amenities": amenities
     }
 
     return jsonify(dict)
