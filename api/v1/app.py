@@ -9,6 +9,11 @@ app = Flask(__name__)
 app.register_blueprint(app_views)
 
 
+@app.errorhandler(404)
+def not_found(error):
+    return {"error": "Not found"}
+
+
 @app.teardown_appcontext
 def tearDown(self):
     storage.close()
