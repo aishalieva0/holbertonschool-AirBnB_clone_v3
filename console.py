@@ -46,7 +46,7 @@ class HBNBCommand(cmd.Cmd):
                 else:
                     try:
                         value = int(value)
-                    except  ValueError:
+                    except ValueError:
                         try:
                             value = float(value)
                         except ValueError:
