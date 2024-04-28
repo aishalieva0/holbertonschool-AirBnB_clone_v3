@@ -50,12 +50,15 @@ def delete_review_id(review_id):
                  strict_slashes=False)
 def post_review(place_id):
     """Create a Review object, use POST http method"""
-    body = request.get_json()
-    if body is None:
+    try:
+        body = request.get_json()
+    except Exception:
         return (jsonify({"error": "Not a JSON"}), 400)
+
     place = storage.get(Place, place_id)
     if place is None:
         abort(404)
+
     if "user_id" not in body:
         return (jsonify({"error": "Missing user_id"}), 400)
     user_id = body.get("user_id")
@@ -77,9 +80,11 @@ def post_review(place_id):
                  strict_slashes=False)
 def update_review_id(review_id):
     """Update a Review object using its id"""
-    body = request.get_json()
-    if body is None:
+    try:
+        body = request.get_json()
+    except Exception:
         return (jsonify({"error": "Not a JSON"}), 400)
+
     review = storage.get(Review, review_id)
     if review is None:
         abort(404)
