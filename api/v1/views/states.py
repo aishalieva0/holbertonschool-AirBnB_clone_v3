@@ -42,7 +42,7 @@ def delete(state_id):
 def create():
     """Creates a State object"""
     data = request.get_json()
-    if not data:
+    if data is None:
         return jsonify({"error": "Not a JSON"}), 400
     if "name" not in data:
         return jsonify({"error": "Missing name"}), 400
