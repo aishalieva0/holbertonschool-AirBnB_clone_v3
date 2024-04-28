@@ -42,8 +42,9 @@ def delete(amenity_id):
 @app_views.route("/amenities", methods=["POST"], strict_slashes=False)
 def create():
     """Creates a Amenity object"""
-    data = request.get_json()
-    if data is None:
+    try:
+        data = request.get_json()
+    except Exception:
         return (jsonify({"error": "Not a JSON"}), 400)
 
     new_amenity = Amenity(**data)
