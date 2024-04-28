@@ -63,9 +63,10 @@ def update_state(state_id):
     if not state:
         abort(404)
 
-    data = request.get_json()
-    if not data:
-        return jsonify({'error': 'Not a JSON'}), 400
+    try:
+        data = request.get_json()
+    except Exception:
+        abort(400, "Not a JSON")
 
     for key, val in data.items():
         if key not in ["id", "created_at", "updated_at"]:
