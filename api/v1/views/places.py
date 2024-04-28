@@ -46,7 +46,7 @@ def create_place(city_id):
     try:
         data = request.get_json()
     except Exception:
-        abort(400, "Not a JSON")
+        return jsonify({"error": "Not a JSON"}), 400
 
     if "name" not in data:
         return jsonify({"error": "Missing name"}), 400
@@ -80,7 +80,7 @@ def update_place(place_id):
     try:
         data = request.get_json()
     except Exception:
-        abort(400, "Not a JSON")
+        return jsonify({"error": "Not a JSON"}), 400
 
     ignore_keys = ["id", "user_id", "city_id", "created_at", "updated_at"]
     for key, val in data.items():
