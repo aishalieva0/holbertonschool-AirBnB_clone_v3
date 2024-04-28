@@ -43,14 +43,15 @@ def create():
     """Creates a State object"""
     data = request.get_json()
     if data is None:
-        return jsonify({"error": "Not a JSON"}), 400
+        return (jsonify({"error": "Not a JSON"}), 400)
+    
     if "name" not in data:
-        return jsonify({"error": "Missing name"}), 400
-
-    new_state = State(**data)
-    storage.new(new_state)
-    storage.save()
-    return jsonify(new_state.to_dict()), 201
+        return (jsonify({"error": "Missing name"}), 400)
+    else:
+        new_state = State(**data)
+        storage.new(new_state)
+        storage.save()
+        return jsonify(new_state.to_dict()), 201
 
 
 @app_views.route("/states/<state_id>", methods=["PUT"], strict_slashes=False)
