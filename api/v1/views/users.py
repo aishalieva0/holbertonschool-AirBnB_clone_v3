@@ -44,7 +44,7 @@ def create_user():
     try:
         data = request.get_json()
     except Exception:
-        abort(400, "Not a JSON")
+        return jsonify({'error': 'Not a JSON'}), 400
 
     if "name" not in data:
         return jsonify({'error': 'Missing name'}), 400
