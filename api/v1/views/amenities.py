@@ -9,7 +9,7 @@ from flask import jsonify, abort, request
 @app_views.route("/amenities", methods=["GET"], strict_slashes=False)
 def get_all():
     """Retrieves the list of all Amenity objects"""
-    amenities = storage.all(SAmenitytate).values()
+    amenities = storage.all(Amenity).values()
     return jsonify([amenity.to_dict() for amenity in amenities])
 
 
