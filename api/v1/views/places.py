@@ -2,6 +2,7 @@
 """State objects that handles all default RESTFul API actions"""
 from api.v1.views import app_views
 from models.place import Place
+from models.city import City
 from models.user import User
 from models import storage
 from flask import jsonify, abort, request
@@ -11,8 +12,10 @@ from flask import jsonify, abort, request
                  strict_slashes=False)
 def get_places(city_id):
     """Retrieves the list of all Place objects"""
-    places = storage.all(Place).values()
-    return jsonify([place.to_dict() for place in places])
+    city = storage.get(City, city_id)
+    if not city:
+        abort(404)
+    return jsonify([place.to_dict() for place in city.places])
 
 
 @app_views.route("/places/<place_id>", methods=["GET"], strict_slashes=False)
