@@ -2,18 +2,17 @@
 """ holds class User"""
 import models
 from models.base_model import BaseModel, Base
-from os import getenv
-import sqlalchemy
 from sqlalchemy import Column, String
 from sqlalchemy.orm import relationship
+import sqlalchemy
 from hashlib import md5
 
 
-
 class User(BaseModel, Base):
-    """Representation of a user """
-    if models.storage_t == 'db':
-        __tablename__ = 'users'
+    """Representation of a user"""
+
+    if models.storage_t == "db":
+        __tablename__ = "users"
         email = Column(String(128), nullable=False)
         password = Column(String(128), nullable=False)
         first_name = Column(String(128), nullable=True)
@@ -29,13 +28,5 @@ class User(BaseModel, Base):
     def __init__(self, *args, **kwargs):
         """initializes user"""
         super().__init__(*args, **kwargs)
-
-    @property
-    def password(self):
-        """ """
-        return self.__dict__.get("password")
-
-    @password.setter
-    def password(self, password):
-        """ """
-        self.__dict__["password"] = md5(password.encode('utf-8')).hexdigest()
+        if kwargs.get("password"):
+            self.password = md5(kwargs["password"].encode()).hexdigest()
