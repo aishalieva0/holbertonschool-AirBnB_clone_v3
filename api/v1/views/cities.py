@@ -66,7 +66,7 @@ def create_city(state_id):
         abort(400, "Missing name")
 
     data["state_id"] = state_id
-    
+
     new_city = City(**data)
 
     storage.new(new_city)
