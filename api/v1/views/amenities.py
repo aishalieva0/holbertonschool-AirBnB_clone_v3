@@ -66,8 +66,9 @@ def update(amenity_id):
     if not amenity:
         abort(404)
 
-    data = request.get_json()
-    if not data:
+    try:
+        data = request.get_json()
+    except Exception:
         abort(400, description="Not a JSON")
 
     for key, val in data.items():
