@@ -46,8 +46,10 @@ def create_user():
     except Exception:
         return jsonify({'error': 'Not a JSON'}), 400
 
-    if "name" not in data:
-        return jsonify({'error': 'Missing name'}), 400
+    if "email" not in data:
+        return jsonify({'error': 'Missing email'}), 400
+    elif "password" not in data:
+        return jsonify({'error': 'Missing password'}), 400
 
     new_user = User(**data)
     storage.new(new_user)
@@ -69,7 +71,7 @@ def update_user(user_id):
         abort(400, "Not a JSON")
 
     for key, val in data.items():
-        if key not in ["id", "created_at", "updated_at"]:
+        if key not in ["id", "email" "created_at", "updated_at"]:
             setattr(user, key, val)
     storage.save()
     return jsonify(user.to_dict()), 200
