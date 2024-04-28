@@ -13,16 +13,20 @@ from flask import jsonify, abort, request
 def get_places(city_id):
     """Retrieves the list of all Place objects"""
     city = storage.get(City, city_id)
-    if not city:
+    if city is None:
         abort(404)
-    return jsonify([place.to_dict() for place in city.places])
+
+    places = []
+    for place in city.places:
+        places.append(place.to_dict())
+    return jsonify(places)
 
 
 @app_views.route("/places/<place_id>", methods=["GET"], strict_slashes=False)
 def get_place(place_id):
     """Retrieves a Place object"""
     place = storage.get(Place, place_id)
-    if not place:
+    if place is None:
         abort(404)
     return jsonify(place.to_dict())
 
@@ -32,11 +36,12 @@ def get_place(place_id):
 def delete_place(place_id):
     """Deletes a Place object"""
     place = storage.get(Place, place_id)
-    if not place:
+    if place is None:
         abort(404)
-    storage.delete(place)
-    storage.save()
-    return jsonify({}), 200
+    else:
+        storage.delete(place)
+        storage.save()
+        return (jsonify({}), 200)
 
 
 @app_views.route("/cities/<city_id>/places", methods=["POST"],
@@ -55,13 +60,14 @@ def create_place(city_id):
 
     user_id = data.get("user_id")
     user = storage.get(User, user_id)
-    if not user:
+    if user is None:
         abort(404)
 
     if "name" not in data:
         abort(400, "Missing name")
 
     data["city_id"] = city_id
+    data["user_id"] = user_id
     new_place = Place(**data)
 
     storage.new(new_place)
