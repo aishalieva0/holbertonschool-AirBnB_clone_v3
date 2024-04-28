@@ -7,14 +7,14 @@ from flask import jsonify, abort, request
 
 
 @app_views.route("/states", methods=["GET"], strict_slashes=False)
-def get_all():
+def get_all_states():
     """Retrieves the list of all State objects"""
     states = storage.all(State).values()
     return jsonify([state.to_dict() for state in states])
 
 
 @app_views.route("/states/<state_id>", methods=["GET"], strict_slashes=False)
-def get(state_id):
+def get_state(state_id):
     """Retrieves a State object"""
     state = storage.get(State, state_id)
 
@@ -26,7 +26,7 @@ def get(state_id):
 
 @app_views.route("/states/<state_id>", methods=["DELETE"],
                  strict_slashes=False)
-def delete(state_id):
+def delete_state(state_id):
     """Deletes a State object"""
     state = storage.get(State, state_id)
 
@@ -39,7 +39,7 @@ def delete(state_id):
 
 
 @app_views.route("/states", methods=["POST"], strict_slashes=False)
-def create():
+def create_state():
     """Creates a State object"""
     data = request.get_json()
     if not request.json:
@@ -55,7 +55,7 @@ def create():
 
 
 @app_views.route("/states/<state_id>", methods=["PUT"], strict_slashes=False)
-def update(state_id):
+def update_state(state_id):
     """Updates a State object"""
     state = storage.get(State, state_id)
 
