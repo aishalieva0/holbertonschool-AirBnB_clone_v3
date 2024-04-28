@@ -53,6 +53,10 @@ def create_place(city_id):
     except Exception:
         return jsonify({"error": "Not a JSON"}), 400
 
+    city = storage.get(City, city_id)
+    if city is None:
+        abort(404)
+
     if "name" not in data:
         return jsonify({"error": "Missing name"}), 400
     if "user_id" not in data:
