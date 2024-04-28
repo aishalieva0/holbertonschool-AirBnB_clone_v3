@@ -43,10 +43,10 @@ def create_state():
     """Creates a State object"""
     data = request.get_json()
     if data is None:
-        abort(400, 'Not a JSON')
+        return (jsonify({'error': 'Not a JSON'}), 400)
 
-    if "name" not in request.json:
-        abort(400, 'Missing name')
+    if "name" not in data:
+        return (jsonify({'error': 'Missing name'}), 400)
 
     new_state = State(**data)
     storage.new(new_state)
