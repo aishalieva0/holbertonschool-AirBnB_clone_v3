@@ -155,7 +155,7 @@ No known bugs at this time.
 
 ## Authors
 Aisha Alieva - [Github](https://github.com/aishalieva0) / [Twitter](https://twitter.com/aishalieva0)
-Alexa Orrico - [Github](https://github.com/alexaorrico) / [Twitter](https://twitter.com/alexa_orrico)  
+\nAlexa Orrico - [Github](https://github.com/alexaorrico) / [Twitter](https://twitter.com/alexa_orrico)  
 Jennifer Huang - [Github](https://github.com/jhuang10123) / [Twitter](https://twitter.com/earthtojhuang)
 
 
