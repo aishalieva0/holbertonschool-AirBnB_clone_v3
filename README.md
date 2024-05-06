@@ -154,9 +154,10 @@ EOF  all  create  destroy  help  quit  show  update
 No known bugs at this time. 
 
 ## Authors
-Aisha Alieva - [Github](https://github.com/AishaAlieva) / [Twitter](https://twitter.com/AishaAlieva)
-Alexa Orrico - [Github](https://github.com/AlexaOrrico) / [Twitter](https://twitter.com/AlexaOrrico)
+Aisha Alieva - [Github](https://github.com/AishaAlieva) / [Twitter](https://twitter.com/AishaAlieva)  
+Alexa Orrico - [Github](https://github.com/AlexaOrrico) / [Twitter](https://twitter.com/AlexaOrrico)  
 Jennifer Huang - [Github](https://github.com/JenniferHuang) / [Twitter](https://twitter.com/JenniferHuang)
+
 
 
 
